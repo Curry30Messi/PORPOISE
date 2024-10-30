@@ -213,7 +213,7 @@ def train(datasets: tuple, cur: int, args: Namespace):
     if args.mode == 'coattn':
         results_val_dict, val_cindex = summary_survival_coattn(model, val_loader, args.n_classes)
     else:
-        results_val_dict, val_cindex = summary_survival(model, val_loader, args.n_classes)
+        results_val_dict, val_cindex = summary_survival(args,model, val_loader, args.n_classes)
 
     print('Val c-Index: {:.4f}'.format(val_cindex))
     writer.close()
@@ -376,7 +376,7 @@ def validate_survival(cur, epoch, model, loader, n_classes, early_stopping=None,
     return False
 
 
-def summary_survival(model, loader, n_classes):
+def summary_survival(args,model, loader, n_classes):
     device=torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model.eval()
     test_loss = 0.
@@ -389,6 +389,12 @@ def summary_survival(model, loader, n_classes):
     patient_results = {}
 
     for batch_idx, (data_WSI, data_omic, y_disc, event_time, censor) in enumerate(loader):
+        if args.modality=='G':
+            data_WSI=torch.zeros_like(data_WSI)
+        elif args.modality=='P':
+            data_omic=torch.zeros_like(data_omic)
+        elif args.modality=='Both':
+            pass
         data_WSI, data_omic = data_WSI.to(device), data_omic.to(device)
         slide_id = slide_ids.iloc[batch_idx]
 

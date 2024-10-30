@@ -110,6 +110,10 @@ parser.add_argument('--overwrite',     	 action='store_true', default=False, hel
 parser.add_argument('--model_type',      type=str, default='mcat', help='Type of model (Default: mcat)')
 parser.add_argument('--mode',            type=str, choices=['omic', 'path', 'pathomic', 'pathomic_fast', 'cluster', 'coattn'], default='coattn', help='Specifies which modalities to use / collate function in dataloader.')
 parser.add_argument('--fusion',          type=str, choices=['None', 'concat', 'bilinear'], default='None', help='Type of fusion. (Default: concat).')
+
+
+parser.add_argument('--modality',          type=str, choices=['Both', 'G', 'P'], default='Both', help='existing modality')
+
 parser.add_argument('--apply_sig',		 action='store_true', default=False, help='Use genomic features as signature embeddings.')
 parser.add_argument('--apply_sigfeats',  action='store_true', default=False, help='Use genomic features as tabular features.')
 parser.add_argument('--drop_out',        action='store_true', default=True, help='Enable dropout (p=0.25)')
