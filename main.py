@@ -109,7 +109,7 @@ parser.add_argument('--overwrite',     	 action='store_true', default=False, hel
 ### Model Parameters.
 parser.add_argument('--model_type',      type=str, default='mcat', help='Type of model (Default: mcat)')
 parser.add_argument('--mode',            type=str, choices=['omic', 'path', 'pathomic', 'pathomic_fast', 'cluster', 'coattn'], default='coattn', help='Specifies which modalities to use / collate function in dataloader.')
-parser.add_argument('--fusion',          type=str, choices=['None', 'concat', 'bilinear'], default='None', help='Type of fusion. (Default: concat).')
+parser.add_argument('--fusion',          type=str, choices=['None', 'concat', 'bilinear'], default='bilinear', help='Type of fusion. (Default: concat).')
 
 
 parser.add_argument('--modality',          type=str, choices=['Both', 'G', 'P'], default='Both', help='existing modality')
