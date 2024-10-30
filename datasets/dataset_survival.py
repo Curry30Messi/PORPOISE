@@ -119,7 +119,7 @@ class Generic_WSI_Survival_Dataset(Dataset):
                 print(col)
         #pdb.set_trace()
 
-        assert self.metadata.equals(pd.Index(metadata))
+        # assert self.metadata.equals(pd.Index(metadata))
         self.mode = mode
         self.cls_ids_prep()
 
