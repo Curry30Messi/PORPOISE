@@ -209,12 +209,12 @@ if 'survival' in args.task:
 	else:
 		combined_study = study
 	
-	study_dir = '%s_20x_features' % combined_study
+	# study_dir = '%s_20x_features' % combined_study
 
 	dataset = Generic_MIL_Survival_Dataset(csv_path = './%s/%s_all_clean.csv.zip' % (args.dataset_path, study),
 										   mode = args.mode,
 										   apply_sig = args.apply_sig,
-										   data_dir= os.path.join(args.data_root_dir, study_dir),
+										   data_dir= args.data_root_dir,
 										   shuffle = False, 
 										   seed = args.seed, 
 										   print_info = True,
