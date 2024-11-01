@@ -411,8 +411,8 @@ def summary_survival(args,model, loader, n_classes):
         else:
             risk = h.detach().cpu().numpy().squeeze()
 
-        event_time = np.asscalar(event_time)
-        censor = np.asscalar(censor)
+        event_time = event_time.item()
+        censor = censor.item()
         all_risk_scores[batch_idx] = risk
         all_censorships[batch_idx] = censor
         all_event_times[batch_idx] = event_time
