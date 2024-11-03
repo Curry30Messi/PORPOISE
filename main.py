@@ -157,6 +157,7 @@ parser.add_argument('--testing', 	 	 action='store_true', default=False, help='d
 args = parser.parse_args()
 device=torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+
 ### Creates Experiment Code from argparse + Folder Name to Save Results
 args = get_custom_exp_code(args)
 args.task = '_'.join(args.split_dir.split('_')[:2]) + '_survival'
@@ -235,7 +236,7 @@ if not os.path.isdir(args.results_dir):
 	os.mkdir(args.results_dir)
 
 ### Appends to the results_dir path: 1) which splits were used for training (e.g. - 5foldcv), and then 2) the parameter code and 3) experiment code
-args.results_dir = os.path.join(args.results_dir, args.which_splits, args.param_code, str(args.exp_code) + '_s{}'.format(args.seed))
+args.results_dir = os.path.join(args.results_dir, args.param_code, f'modality_{args.modality}_{args.exp_code}_s{args.seed}')
 if not os.path.isdir(args.results_dir):
 	os.makedirs(args.results_dir)
 
